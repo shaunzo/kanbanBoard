@@ -1,0 +1,13 @@
+.flex-vertical-stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-horizontal-stack {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-fill-space {
+  flex-grow: 1;
+}
