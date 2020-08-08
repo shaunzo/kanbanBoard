@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ITaskBoard } from '../tasks/task-board/task-board';
+import { OverlayService } from '../overlay.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -8,16 +9,21 @@ import { ITaskBoard } from '../tasks/task-board/task-board';
 })
 export class ToolbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private modal: OverlayService) { }
 
   ngOnInit(): void {
   }
 
-  addTaskBoard(params: ITaskBoard ) {
-    console.log('Create Task Board');
+  addTaskBoard() {
+
+    const ref = this.modal.open('This is a string modal test' , null, 400);
+
+    ref.afterClosed$.subscribe(res => {
+      console.log(res);
+    });
   }
 
-  removeTaskBoard(id: string) {
+  removeTaskBoard() {
     console.log('Removed Task Board');
   }
 

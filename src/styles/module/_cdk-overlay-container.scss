@@ -1,0 +1,25 @@
+.cdk-overlay-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: fixed;
+  top: 0;
+
+  .modal-background {
+    display: flex;
+    background-color: black;
+    z-index: 1000;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    opacity: .5;
+  }
+
+  .modal {
+    position: relative;
+    z-index: 1200;
+    margin-top: 120px;
+  }
+}

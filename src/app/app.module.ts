@@ -9,13 +9,15 @@ import { MenuComponent } from './menu/menu.component';
 import { FooterComponent } from './footer/footer.component';
 import { TasksModule } from './tasks/tasks.module';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolbarComponent,
     MenuComponent,
-    FooterComponent
+    FooterComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -25,6 +27,13 @@ import { OverlayModule } from '@angular/cdk/overlay';
     OverlayModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ModalComponent]
 })
 export class AppModule { }
+
+
+/**
+ * Modal tutorial:
+ * https://codinglatte.com/posts/angular/reusable-modal-overlay-using-angular-cdk-overlay/
+ */
