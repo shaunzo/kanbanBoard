@@ -8,27 +8,24 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { MenuComponent } from './menu/menu.component';
 import { FooterComponent } from './footer/footer.component';
 import { TasksModule } from './tasks/tasks.module';
-import { OverlayModule } from '@angular/cdk/overlay';
-import { ModalComponent } from './modal/modal.component';
+import { ModalModule } from './modal/modal.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolbarComponent,
     MenuComponent,
-    FooterComponent,
-    ModalComponent
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AngularSvgIconModule.forRoot(),
     TasksModule,
-    OverlayModule
+    ModalModule
   ],
   providers: [],
-  bootstrap: [AppComponent],
-  entryComponents: [ModalComponent]
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }
 

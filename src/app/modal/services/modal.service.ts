@@ -1,18 +1,18 @@
 import { Injectable, Injector, TemplateRef, Type } from '@angular/core';
 import { Overlay, OverlayConfig } from '@angular/cdk/overlay';
 import { ComponentPortal, PortalInjector } from '@angular/cdk/portal';
-import { MyOverlayRef } from './myOverlayRef';
-import { ModalComponent } from './modal/modal.component';
+import { ModalOverlayRef } from '../modalOverlayRef';
+import { ModalComponent } from '../modal.component';
 
 @Injectable({
   providedIn: 'root'
 })
-export class OverlayService {
+export class ModalService {
 
   constructor(private overlay: Overlay, private injector: Injector) { }
 
   open<R = any, T = any>(
-    content: string | TemplateRef<any> | Type<any>, data: T, width: number): MyOverlayRef<R> {
+    content: string | TemplateRef<any> | Type<any>, data: T, width: number): ModalOverlayRef<R> {
       const configs = new OverlayConfig({
         hasBackdrop: true,
         panelClass: ['modal', 'is-active'],
@@ -22,7 +22,7 @@ export class OverlayService {
 
       const overlayRef = this.overlay.create(configs);
 
-      const myOverlayRef = new MyOverlayRef<R, T>(overlayRef, content, data);
+      const myOverlayRef = new ModalOverlayRef<R, T>(overlayRef, content, data);
 
       const injector = this.createInjector(myOverlayRef, this.injector);
 
@@ -31,8 +31,8 @@ export class OverlayService {
       return myOverlayRef;
     }
 
-    createInjector(ref: MyOverlayRef, inj: Injector) {
-      const injectorTokens = new WeakMap([[MyOverlayRef, ref]]);
+    createInjector(ref: ModalOverlayRef, inj: Injector) {
+      const injectorTokens = new WeakMap([[ModalOverlayRef, ref]]);
       return new PortalInjector(inj, injectorTokens);
     }
 }

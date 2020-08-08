@@ -1,5 +1,5 @@
 import { Component, OnInit, TemplateRef, Type } from '@angular/core';
-import { MyOverlayRef } from '../myOverlayRef';
+import { ModalOverlayRef } from './modalOverlayRef';
 
 @Component({
   selector: 'app-modal',
@@ -12,7 +12,7 @@ export class ModalComponent implements OnInit {
   content: string | TemplateRef<any> | Type<any>;
   context;
 
-  constructor(private ref: MyOverlayRef) { }
+  constructor(private ref: ModalOverlayRef) { }
 
   ngOnInit(): void {
     this.content = this.ref.content;
