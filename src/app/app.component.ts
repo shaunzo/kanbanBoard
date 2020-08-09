@@ -9,18 +9,25 @@ import { TasksService } from './tasks/services/tasks.service';
 })
 export class AppComponent implements OnInit {
 
-  taskBoards:any;
+  taskBoards = [];
 
   constructor(private tasksService: TasksService) {}
 
   ngOnInit() {
     this.getTaskBoards();
+    this.setTaskboards();
+  }
+
+  setTaskboards() {
+    this.tasksService.updatedTaskboard$.subscribe((data) => {
+      this.taskBoards = data;
+      console.log(this.taskBoards);
+    });
   }
 
   getTaskBoards() {
     this.tasksService.getTaskBoard$().subscribe(res => {
-      console.log(res);
-      // this.tasksService.updatedTaskboard$.next(res);
+      this.tasksService.updateTaskboards(res);
     });
   }
 }

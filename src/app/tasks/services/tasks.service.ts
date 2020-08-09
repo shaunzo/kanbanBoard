@@ -13,6 +13,10 @@ export class TasksService {
   constructor( private httpClient: HttpClient ) {
   }
 
+  updateTaskboards(data) {
+    this.updatedTaskboard$.next(data);
+  }
+
   getTaskBoard$() {
     return this.httpClient.get('assets/mock-data/boards.json');
   }

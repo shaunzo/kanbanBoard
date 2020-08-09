@@ -1,8 +1,8 @@
-import { TestBed, async, ComponentFixture,  } from '@angular/core/testing';
+import { TestBed, async, fakeAsync, ComponentFixture, tick,  } from '@angular/core/testing';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { HttpClientModule } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { of, Subject } from 'rxjs';
+import { of, Subject, Observable } from 'rxjs';
 
 import { AppComponent } from './app.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
@@ -16,7 +16,7 @@ import { TasksService } from './tasks/services/tasks.service';
 describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
-  let tasksService: jasmine.SpyObj<TasksService>;
+  // let tasksService: jasmine.SpyObj<TasksService>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -33,7 +33,7 @@ describe('AppComponent', () => {
       ],
       providers: [
         { provide: Overlay, useFactory: () => spyOnClass(Overlay)},
-        { provide: TasksService, useFactory: () => spyOnClass(TasksService)}
+        // { provide: TasksService, useFactory: () => spyOnClass(TasksService)}
       ],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
     }).compileComponents();
@@ -44,8 +44,9 @@ describe('AppComponent', () => {
     component = fixture.componentInstance;
 
     const taskBoards = require('../assets/mock-data/boards.json');
-    tasksService = TestBed.get(TasksService);
-    tasksService.getTaskBoard$.and.returnValue(of(taskBoards));
+    // tasksService = TestBed.get(TasksService);
+    // tasksService.getTaskBoard$.and.returnValue(of(taskBoards));
+
 
     fixture.detectChanges();
   });
@@ -75,19 +76,23 @@ describe('AppComponent', () => {
     expect(footer).toBeTruthy();
   });
 
-  // it('should contain a taskBoards array', () => {
-  //   expect(component.taskBoards).toBeTruthy();
-  // });
+  it('should contain a taskBoards array which has no values', () => {
+    expect(component.taskBoards.length).toBe(0);
+  });
 
   it('should request for the tasksService to return a list of TaskBoards on initialisation', async(() => {
+    const data = require('../assets/mock-data/boards.json');
+    let tasksService = fixture.debugElement.injector.get(TasksService);
+    let spyOnGetTaskBoard$ = spyOn(tasksService, 'getTaskBoard$').and.returnValue(of(data));
+    let spyOnUpdateTaskboards = spyOn(tasksService, 'updateTaskboards').and.returnValue(data);
 
-    component.getTaskBoards();
+    component.ngOnInit();
     fixture.detectChanges();
 
     fixture.whenStable().then(() => {
       expect(tasksService.getTaskBoard$).toHaveBeenCalled();
+      expect(spyOnUpdateTaskboards).toHaveBeenCalledWith(data);
     });
-
   }));
 
 });
