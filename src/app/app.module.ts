@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 
@@ -9,13 +9,14 @@ import { MenuComponent } from './menu/menu.component';
 import { FooterComponent } from './footer/footer.component';
 import { TasksModule } from './tasks/tasks.module';
 import { ModalModule } from './modal/modal.module';
+import { TasksService } from './tasks/services/tasks.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolbarComponent,
     MenuComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -24,7 +25,10 @@ import { ModalModule } from './modal/modal.module';
     TasksModule,
     ModalModule
   ],
-  providers: [],
+  providers: [
+    TasksService
+  ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

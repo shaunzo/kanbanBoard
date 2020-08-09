@@ -1,15 +1,14 @@
-<div class="modal-content">
-  Content Type is {{ contentType }}
+<div data-test="modal-content" class="modal-content">
   <ng-container [ngSwitch]="contentType">
 
     <ng-container *ngSwitchCase="'string'">
       <div class="box">
-        <div [innerHTML]="content"></div>
+        <div data-test="string-content" [innerHTML]="content"></div>
       </div>
     </ng-container>
 
     <ng-container *ngSwitchCase="'template'">
-      <ng-container *ngTemplateOutlet="content; context: context"></ng-container>
+      <ng-container data-test="templateRef-content" *ngTemplateOutlet="content; context: context"></ng-container>
     </ng-container>
 
     <ng-container *ngSwitchCase="'component'">
@@ -18,7 +17,4 @@
 
   </ng-container>
 </div>
-
-<!-- <button (click)="close()" class="modal-close is-large" aria-label="close"></button> -->
-
 

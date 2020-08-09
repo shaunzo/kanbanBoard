@@ -1,34 +1,52 @@
 import { TestBed, async, ComponentFixture,  } from '@angular/core/testing';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { HttpClientModule } from '@angular/common/http';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { of, Subject } from 'rxjs';
 
 import { AppComponent } from './app.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { TasksModule } from './tasks/tasks.module';
+import { Overlay } from '@angular/cdk/overlay';
+import { spyOnClass } from 'jasmine-es6-spies';
+import { ModalModule } from './modal/modal.module';
+import { TasksService } from './tasks/services/tasks.service';
 
 describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
+  let tasksService: jasmine.SpyObj<TasksService>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        AngularSvgIconModule,
+        AngularSvgIconModule.forRoot(),
         HttpClientModule,
-        TasksModule
+        TasksModule,
+        ModalModule
       ],
       declarations: [
         AppComponent,
         ToolbarComponent,
         FooterComponent
       ],
+      providers: [
+        { provide: Overlay, useFactory: () => spyOnClass(Overlay)},
+        { provide: TasksService, useFactory: () => spyOnClass(TasksService)}
+      ],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
     }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
+
+    const taskBoards = require('../assets/mock-data/boards.json');
+    tasksService = TestBed.get(TasksService);
+    tasksService.getTaskBoard$.and.returnValue(of(taskBoards));
+
     fixture.detectChanges();
   });
 
@@ -56,5 +74,20 @@ describe('AppComponent', () => {
     const footer = fixture.nativeElement.querySelector('[data-test="footer"]');
     expect(footer).toBeTruthy();
   });
+
+  // it('should contain a taskBoards array', () => {
+  //   expect(component.taskBoards).toBeTruthy();
+  // });
+
+  it('should request for the tasksService to return a list of TaskBoards on initialisation', async(() => {
+
+    component.getTaskBoards();
+    fixture.detectChanges();
+
+    fixture.whenStable().then(() => {
+      expect(tasksService.getTaskBoard$).toHaveBeenCalled();
+    });
+
+  }));
 
 });

@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ITaskBoard } from './task-board/task-board';
-import { of } from 'rxjs';
+import { ITaskBoard } from '../task-board/interfaces/task-board';
+import { of, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TasksService {
 
-  constructor( private httpClient: HttpClient ) { }
+  updatedTaskboard$ = new Subject<any>();
+
+  constructor( private httpClient: HttpClient ) {
+  }
 
   getTaskBoard$() {
     return this.httpClient.get('assets/mock-data/boards.json');

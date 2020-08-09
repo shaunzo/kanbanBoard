@@ -1,1 +1,5 @@
-<p>task-board works!</p>
+<div *ngIf="taskBoards.length === 0">
+  <p data-test="noTaskBoardsMessage">You have no boards.</p>
+  <button (click)="addTaskBoard()" data-test="createBoardButton">Create one!</button>
+</div>
+

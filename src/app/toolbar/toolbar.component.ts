@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../modal/services/modal.service';
-import { TaskBoardComponent } from '../tasks/task-board/task-board.component';
+import { AddTaskBoardComponent } from '../tasks/add-task-board/add-task-board.component';
+import { RemoveTaskBoardComponent } from '../tasks/remove-task-board/remove-task-board.component';
 
 @Component({
   selector: 'app-toolbar',
@@ -8,21 +9,24 @@ import { TaskBoardComponent } from '../tasks/task-board/task-board.component';
   styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent implements OnInit {
-
+  test: any
   constructor(private modal: ModalService) { }
 
   ngOnInit(): void {
   }
 
   addTaskBoard() {
-    const ref = this.modal.open(TaskBoardComponent , null, 400);
+    const ref = this.modal.open(AddTaskBoardComponent , null, 400);
     ref.afterClosed$.subscribe(res => {
       console.log(res);
     });
   }
 
   removeTaskBoard() {
-    console.log('Removed Task Board');
+    const ref = this.modal.open(RemoveTaskBoardComponent , null, 400);
+    ref.afterClosed$.subscribe(res => {
+      console.log(res);
+    });
   }
 
 }
