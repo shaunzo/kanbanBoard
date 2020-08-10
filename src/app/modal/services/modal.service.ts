@@ -3,6 +3,7 @@ import { Overlay, OverlayConfig } from '@angular/cdk/overlay';
 import { ComponentPortal, PortalInjector } from '@angular/cdk/portal';
 import { ModalOverlayRef } from '../modalOverlayRef';
 import { ModalComponent } from '../modal.component';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

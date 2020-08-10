@@ -12,10 +12,17 @@ export class TasksService {
 
   updatedTaskboard$ = new Subject<any>();
   currentActiveBoardIndex$ = new Subject<number>();
+  createdNewBoard$ = new Subject<string>(); // Pass board ID
+
+  boardId: string;
 
   constructor( private httpClient: HttpClient ) {
     this.updatedTaskboard$.subscribe((data) => {
       this.taskBoards = [data];
+    });
+
+    this.createdNewBoard$.subscribe((boardID) => {
+      this.setActiveBoard(boardID);
     });
   }
 
@@ -27,12 +34,18 @@ export class TasksService {
     return this.httpClient.get('assets/mock-data/boards.json');
   }
 
-  createTaskBoard(params: ITaskBoard) {
+  createTaskBoard(name: string) {
     const board: ITaskBoard = {
       id: new Date().getMilliseconds().toString(),
-      name: params.name
+      name,
+      columns: []
     };
-    return of(board);
+
+    this.taskBoards[0].push(board);
+    this.updateTaskboards(this.taskBoards[0]);
+    this.boardId = board.id;
+
+    this.createdNewBoard$.next(this.boardId);
   }
 
   setActiveBoard(id: string) {
@@ -43,6 +56,7 @@ export class TasksService {
         index = i;
       }
     }
+
     this.currentActiveBoardIndex$.next(index);
   }
 

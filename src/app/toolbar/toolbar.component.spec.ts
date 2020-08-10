@@ -8,6 +8,7 @@ import { ModalService } from '../modal/services/modal.service';
 import { ModalOverlayRef } from '../modal/modalOverlayRef';
 import { AddTaskBoardComponent } from '../tasks/add-task-board/add-task-board.component';
 import { RemoveTaskBoardComponent } from  '../tasks/remove-task-board/remove-task-board.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ToolbarComponent', () => {
   let component: ToolbarComponent;
@@ -24,6 +25,7 @@ describe('ToolbarComponent', () => {
         ToolbarComponent,
         ModalComponent
       ],
+      imports: [ HttpClientTestingModule ],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
       providers: [
         { provide: ModalService, useFactory: () => spyOnClass(ModalService) },
@@ -40,6 +42,7 @@ describe('ToolbarComponent', () => {
     modalComponent = TestBed.createComponent(ModalComponent);
     addTaskBoardComponent = TestBed.createComponent(AddTaskBoardComponent);
     removeTaskBoardComponent = TestBed.createComponent(RemoveTaskBoardComponent);
+    modalService = TestBed.get(ModalService);
     fixture.detectChanges();
   });
 

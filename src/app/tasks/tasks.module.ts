@@ -13,6 +13,7 @@ import { AddTaskComponent } from './task-board/add-task/add-task.component';
 import { EditTaskBoardComponent } from './edit-task-board/edit-task-board.component';
 import { DeleteTaskComponent } from './task-board/task-column/delete-task/delete-task.component';
 import { EditTaskComponent } from './task-board/task-column/edit-task/edit-task.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -31,7 +32,8 @@ import { EditTaskComponent } from './task-board/task-column/edit-task/edit-task.
     EditTaskComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ],
   exports: [
     TaskBoardComponent,

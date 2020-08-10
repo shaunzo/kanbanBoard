@@ -14,3 +14,23 @@ button {
   cursor: pointer;
   max-height: 35px;
 }
+
+// Forms
+fieldset {
+  padding: 0;
+  border: 0;
+
+  input {
+    width: 100%;
+    border-radius: 0;
+    padding: 10px;
+    border: 1px solid #000;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+  }
+
+  button {
+    margin-left: 0;
+    margin-right: 0;;;
+  }
+}

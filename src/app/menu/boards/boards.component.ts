@@ -15,6 +15,9 @@ export class BoardsComponent implements OnInit, OnChanges {
   constructor( private tasksService: TasksService ) { }
 
   ngOnInit(): void {
+    // this.tasksService.createdNewBoard$.subscribe(id => {
+    //   this.setActiveBoard(id);
+    // })
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -33,7 +36,12 @@ export class BoardsComponent implements OnInit, OnChanges {
 
         if (checkActiveItem.length === 0) {
           this.boards[0].active = true;
-          this.setActiveBoard(this.boards[0].id);
+
+          if(this.tasksService.boardId) {
+            this.setActiveBoard(this.tasksService.boardId);
+          } else {
+            this.setActiveBoard(this.boards[0].id);
+          }
         }
       }
     }

@@ -14,7 +14,7 @@ export class MenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.taskService.updatedTaskboard$.subscribe(data => {
-      this.taskBoards = data;
+      this.taskBoards = data.slice();
     });
   }
 

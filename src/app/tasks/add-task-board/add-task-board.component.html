@@ -1,4 +1,13 @@
 <div data-test="addTaskBoard">
-  <p>add-task-board works!</p>
+  <h3>Please enter a name for your board</h3>
+  <form [formGroup]="addTaskBoardForm" (ngSubmit)="onSubmit()">
+    <fieldset>
+      <input type="text" id="name" name="name" formControlName="name">
+    </fieldset>
+
+    <fieldset>
+      <button  *ngIf="addTaskBoardForm.get('name').valid" type="submit">Create Board</button>
+    </fieldset>
+  </form>
 </div>
 

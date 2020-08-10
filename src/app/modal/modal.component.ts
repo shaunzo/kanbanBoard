@@ -1,5 +1,6 @@
 import { Component, OnInit, TemplateRef, Type, ViewChild, ElementRef, Injector, ReflectiveInjector, Injectable } from '@angular/core';
 import { ModalOverlayRef } from './modalOverlayRef';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-modal',
@@ -7,6 +8,8 @@ import { ModalOverlayRef } from './modalOverlayRef';
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent implements OnInit {
+
+  submittedForm$ = new Subject<any>();
 
   contentType: 'template' | 'string' | 'component';
   content: string | TemplateRef<any> | Type<any>;
@@ -30,6 +33,10 @@ export class ModalComponent implements OnInit {
     } else {
       this.contentType = 'component';
     }
+
+    this.submittedForm$.subscribe(() => {
+      this.close();
+    });
   }
 
   close() {

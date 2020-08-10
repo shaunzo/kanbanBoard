@@ -21,7 +21,15 @@
         </div>
 
       </app-task-column>
+
+      <div class="noDataMessage flex-fill-space" *ngIf="columns.length === 0">
+        <div class="content flex-vertical-center">
+          <h2>You have no task columns.</h2>
+          <button>Create one!</button>
+        </div>
+      </div>
     </div>
+
   </div>
 </ng-container>
 

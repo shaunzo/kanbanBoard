@@ -8,7 +8,6 @@ import { TasksService } from './tasks/services/tasks.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-
   taskBoards = [];
 
   constructor(private tasksService: TasksService) {}
