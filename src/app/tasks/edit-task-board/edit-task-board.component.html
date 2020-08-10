@@ -1,1 +1,12 @@
-<p>edit-task-board works!</p>
+<div data-test="editTaskBoard">
+  <h3>Please update your board</h3>
+  <form [formGroup]="editTaskBoardForm" (ngSubmit)="onSubmit()">
+    <fieldset>
+      <input type="text" id="name" name="name" formControlName="name">
+    </fieldset>
+
+    <fieldset>
+      <button  *ngIf="editTaskBoardForm.get('name').valid" type="submit">Update</button>
+    </fieldset>
+  </form>
+</div>

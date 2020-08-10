@@ -15,15 +15,31 @@ export class TasksService {
   createdNewBoard$ = new Subject<string>(); // Pass board ID
 
   boardId: string;
+  currentActiveBoardIndex: number;
+  currentTaskBoardData: ITaskBoard;
 
   constructor( private httpClient: HttpClient ) {
     this.updatedTaskboard$.subscribe((data) => {
       this.taskBoards = [data];
+      console.log(data);
     });
 
     this.createdNewBoard$.subscribe((boardID) => {
       this.setActiveBoard(boardID);
     });
+
+    this.currentActiveBoardIndex$.subscribe(boardIndex => {
+      this.currentActiveBoardIndex = boardIndex;
+
+      if (this.taskBoards[this.currentActiveBoardIndex]) {
+        this.currentTaskBoardData = {
+          id: this.taskBoards[this.currentActiveBoardIndex].id,
+          name: this.taskBoards[this.currentActiveBoardIndex].name,
+          columns: this.taskBoards[this.currentActiveBoardIndex].columns
+        };
+      }
+    });
+
   }
 
   updateTaskboards(data) {
