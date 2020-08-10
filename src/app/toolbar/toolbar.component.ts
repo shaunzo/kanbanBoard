@@ -10,7 +10,7 @@ import { EditTaskBoardComponent } from '../tasks/edit-task-board/edit-task-board
   styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent implements OnInit {
-  test: any
+
   constructor(private modal: ModalService) { }
 
   ngOnInit(): void {

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { ITaskBoard } from '../task-board/interfaces/task-board';
 import { TasksService } from '../services/tasks.service';
 import { ModalComponent } from '../../modal/modal.component';
 
@@ -9,6 +8,7 @@ import { ModalComponent } from '../../modal/modal.component';
   templateUrl: './add-task-board.component.html',
   styleUrls: ['./add-task-board.component.scss']
 })
+
 export class AddTaskBoardComponent implements OnInit {
   addTaskBoardForm: FormGroup;
   registerFormControl: FormGroup;

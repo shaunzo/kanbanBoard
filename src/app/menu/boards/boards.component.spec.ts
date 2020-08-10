@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core
 import { spyOnClass } from 'jasmine-es6-spies';
 import { TasksService } from '../../tasks/services/tasks.service';
 import { BoardsComponent } from './boards.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('BoardsComponent', () => {
   let component: BoardsComponent;
@@ -13,7 +14,8 @@ describe('BoardsComponent', () => {
       declarations: [ BoardsComponent ],
       providers: [ {
         provide: TasksService, useFactory: () => spyOnClass(TasksService)
-      }]
+      }],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
     .compileComponents();
   }));
