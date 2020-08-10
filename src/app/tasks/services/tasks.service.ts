@@ -15,8 +15,7 @@ export class TasksService {
 
   constructor( private httpClient: HttpClient ) {
     this.updatedTaskboard$.subscribe((data) => {
-      this.taskBoards = [...this.taskBoards, data];
-      console.log(this.taskBoards);
+      this.taskBoards = [data];
     });
   }
 
@@ -40,7 +39,6 @@ export class TasksService {
     const index = this.taskBoards.filter((item, i) => {
       if (item.id === id) {
         this.currentActiveBoardIndex$.next(i);
-        console.log(i);
       }
     });
   }

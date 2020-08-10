@@ -20,22 +20,35 @@ export class BoardsComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (changes.boardsInput.currentValue.length > 0 && changes.boardsInput.currentValue !== changes.boardsInput) {
 
-      this.boards = this.boardsInput.map((item, i) => {
-        return { id: item.id, name: item.name, active: false };
+      this.boards = this.boardsInput.map(item => {
+        if(item) {
+          return { id: item.id, name: item.name, active: false };
+        }
       });
 
-      const checkActiveItem = this.boards.filter((item) => {
-        return item.active === true;
-      });
+      if (this.boards && this.boards.length > 0) {
+        const checkActiveItem = this.boards.filter((item) => {
+            return item.active === true;
+        });
 
-      if (checkActiveItem.length === 0) {
-        this.boards[0].active = true;
+        if (checkActiveItem.length === 0) {
+          this.boards[0].active = true;
+          this.setActiveBoard(this.boards[0].id);
+        }
       }
     }
   }
 
   setActiveBoard(id: string) {
     this.tasksService.setActiveBoard(id);
+    for (let i = 0; i < this.boards.length; i++) {
+      let boardItem = this.boards[i];
+      if(boardItem.id === id) {
+        boardItem.active = true;
+      } else {
+        boardItem.active = false;
+      }
+    }
   }
 
 }

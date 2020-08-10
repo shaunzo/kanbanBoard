@@ -21,13 +21,12 @@ export class AppComponent implements OnInit {
   setTaskboards() {
     this.tasksService.updatedTaskboard$.subscribe((data) => {
       this.taskBoards = data;
-      console.log(this.taskBoards);
     });
   }
 
   getTaskBoards() {
     this.tasksService.getTaskBoard$().subscribe(res => {
-      this.tasksService.updateTaskboards(res[0]);
+      this.tasksService.updateTaskboards(res);
     });
   }
 }
