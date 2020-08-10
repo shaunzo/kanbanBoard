@@ -12,7 +12,7 @@
     </ng-container>
 
     <ng-container *ngSwitchCase="'component'">
-      <ng-container *ngComponentOutlet="content"></ng-container>
+      <ng-container *ngComponentOutlet="content; injector: myInjector"></ng-container>
     </ng-container>
 
   </ng-container>

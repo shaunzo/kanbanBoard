@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, Type, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, Type, ViewChild, ElementRef, Injector, ReflectiveInjector, Injectable } from '@angular/core';
 import { ModalOverlayRef } from './modalOverlayRef';
 
 @Component({
@@ -11,8 +11,10 @@ export class ModalComponent implements OnInit {
   contentType: 'template' | 'string' | 'component';
   content: string | TemplateRef<any> | Type<any>;
   context;
+  myInjector: Injector;
 
-  constructor(private ref: ModalOverlayRef) { }
+  constructor(private ref: ModalOverlayRef) {
+  }
 
   ngOnInit(): void {
 

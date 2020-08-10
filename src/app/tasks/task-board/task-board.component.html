@@ -1,3 +1,15 @@
+<ng-container *ngIf="taskBoards.length > 0">
+  <div class="taskBoardContainer flex-vertical-stack">
+    <div class="taskBoard-header flex-horizontal-stack">
+      <h1>{{ currentTaskBoardData.name }}</h1>
+      <div class="flex-fill-space"></div>
+      <div class="flex-vertical-stack flex-vertical-center">
+        <button (click)="addColumn(currentActiveBoardIndex)">Add Task Column</button>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
 <div *ngIf="taskBoards.length === 0">
   <p data-test="noTaskBoardsMessage">You have no boards.</p>
   <button (click)="addTaskBoard()" data-test="createBoardButton">Create one!</button>

@@ -36,11 +36,14 @@ export class TasksService {
   }
 
   setActiveBoard(id: string) {
-    const index = this.taskBoards.filter((item, i) => {
+    let index = null;
+    for (let i = 0; i < this.taskBoards[0].length; i++) {
+      let item = this.taskBoards[0][i];
       if (item.id === id) {
-        this.currentActiveBoardIndex$.next(i);
+        index = i;
       }
-    });
+    }
+    this.currentActiveBoardIndex$.next(index);
   }
 
 

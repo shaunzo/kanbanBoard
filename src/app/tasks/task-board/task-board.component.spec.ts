@@ -14,7 +14,6 @@ describe('TaskBoardComponent', () => {
   let fixture: ComponentFixture<TaskBoardComponent>;
   let modalService: jasmine.SpyObj<ModalService>;
   let modelOverlayRef: jasmine.SpyObj<ModalOverlayRef>;
-  // let tasksService: jasmine.SpyObj<TasksService>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -28,7 +27,6 @@ describe('TaskBoardComponent', () => {
       providers: [
         { provide: ModalService, useFactory: () => spyOnClass(ModalService) },
         { provide: ModalOverlayRef, useFactory: () => spyOnClass(ModalOverlayRef) },
-        // { provide: TasksService, useFactory: () => spyOnClass(TasksService) }
       ]
     })
     .compileComponents();
@@ -38,10 +36,6 @@ describe('TaskBoardComponent', () => {
     fixture = TestBed.createComponent(TaskBoardComponent);
     component = fixture.componentInstance;
     modalService = TestBed.get(ModalService);
-    // tasksService = TestBed.get(TasksService);
-
-    // const data = require('../../../assets/mock-data/boards.json');
-
     fixture.detectChanges();
   });
 
@@ -86,6 +80,21 @@ describe('TaskBoardComponent', () => {
 
     fixture.detectChanges();
     expect(component.taskBoards.length).toBe(0);
+    component.ngOnInit();
+
+    tick();
+    fixture.detectChanges();
+    expect(spy).toHaveBeenCalled();
+  }));
+
+  it('should receive the index of teh Task Board that is currently active', fakeAsync(() => {
+    const data = require('../../../assets/mock-data/boards.json');
+    let tasksService = fixture.debugElement.injector.get(TasksService);
+    let spyOnGetTaskBoard$ = spyOn(tasksService, 'getTaskBoard$').and.returnValue(of(data));
+    let spyOnUpdateTaskboards = spyOn(tasksService, 'updateTaskboards').and.returnValue(data);
+    let spy = spyOn(component, 'getTaskBoards').and.returnValue(data);
+    fixture.detectChanges();
+
     component.ngOnInit();
 
     tick();

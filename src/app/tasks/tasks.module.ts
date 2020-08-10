@@ -4,6 +4,8 @@ import { TaskBoardComponent } from './task-board/task-board.component';
 import { TasksService } from './services/tasks.service';
 import { AddTaskBoardComponent } from './add-task-board/add-task-board.component';
 import { RemoveTaskBoardComponent } from './remove-task-board/remove-task-board.component';
+import { AddTaskColumnComponent } from './task-board/add-task-column/add-task-column.component';
+import { ModalService } from '../modal/services/modal.service';
 
 
 
@@ -11,7 +13,8 @@ import { RemoveTaskBoardComponent } from './remove-task-board/remove-task-board.
   declarations: [
     TaskBoardComponent,
     AddTaskBoardComponent,
-    RemoveTaskBoardComponent
+    RemoveTaskBoardComponent,
+    AddTaskColumnComponent
   ],
   imports: [
     CommonModule
@@ -21,6 +24,9 @@ import { RemoveTaskBoardComponent } from './remove-task-board/remove-task-board.
     AddTaskBoardComponent,
     RemoveTaskBoardComponent
   ],
-  providers: [ TasksService ]
+  providers: [
+    TasksService,
+    ModalService
+  ]
 })
 export class TasksModule { }
