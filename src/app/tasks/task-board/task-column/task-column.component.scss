@@ -12,10 +12,17 @@
 
   .task-column-content {
     width: 100%;
+
+    .tasks-container {
+      background-color: #fff;
+      display: flex;
+    }
   }
 
   .task-column-action {
     width: 100%;
     justify-content: center;
   }
+
 }
+

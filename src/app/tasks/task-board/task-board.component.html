@@ -9,7 +9,18 @@
     </div>
 
     <div class="taskBoard-columns flex-horizontal-stack flex-fill-space">
-      <app-task-column *ngFor="let column of columns" [columnName]="column.name"></app-task-column>
+      <app-task-column *ngFor="let column of columns" [columnName]="column.name">
+
+        <div *ngFor="let task of column.tasks" class="task-block flex-vertical-stack">
+          <div class="task-block-header">{{task.name}} | <small>{{task.id}}</small></div>
+          <div class="task-block-content flex-fill-space">{{task.description}}</div>
+          <div class="task-block-actions flex-horizontal-stack">
+            <button (click)="editTask()">Edit</button>
+            <button (click)="deleteTask()">Delete</button>
+          </div>
+        </div>
+
+      </app-task-column>
     </div>
   </div>
 </ng-container>

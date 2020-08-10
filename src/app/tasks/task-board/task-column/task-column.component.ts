@@ -3,6 +3,7 @@ import { ModalService } from '../../../modal/services/modal.service';
 import { AddTaskComponent } from '../add-task/add-task.component';
 import { EditColumnComponent } from '../edit-column/edit-column.component';
 import { DeleteColumnComponent } from '..//delete-column/delete-column.component';
+import { ITask } from '../interfaces/task';
 
 @Component({
   selector: 'app-task-column',
@@ -11,6 +12,7 @@ import { DeleteColumnComponent } from '..//delete-column/delete-column.component
 })
 export class TaskColumnComponent implements OnInit {
   @Input() columnName: string;
+  @Input() tasks: ITask[];
 
   constructor(private modal: ModalService) { }
 

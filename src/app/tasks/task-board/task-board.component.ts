@@ -4,7 +4,10 @@ import { AddTaskBoardComponent } from '../add-task-board/add-task-board.componen
 import { ModalService } from '../../modal/services/modal.service';
 import { TasksService } from '../services/tasks.service';
 import { IColumn } from './interfaces/column';
+import { ITask } from './interfaces/task';
 import { AddTaskColumnComponent } from './add-task-column/add-task-column.component';
+import { DeleteTaskComponent } from './task-column/delete-task/delete-task.component';
+import { EditTaskComponent } from './task-column/edit-task/edit-task.component';
 
 @Component({
   selector: 'app-task-board',
@@ -18,6 +21,7 @@ export class TaskBoardComponent implements OnInit {
   taskBoards: ITaskBoard[] = [];
   title: string;
   columns: IColumn[];
+  tasks: ITask[];
 
   currentTaskBoardData: ITaskBoard;
 
@@ -53,6 +57,20 @@ export class TaskBoardComponent implements OnInit {
 
   addColumn(boardId: number ) {
     const ref = this.modal.open(AddTaskColumnComponent , boardId, 400);
+    ref.afterClosed$.subscribe(res => {
+      console.log(res);
+    });
+  }
+
+  editTask() {
+    const ref = this.modal.open(EditTaskComponent , null, 400);
+    ref.afterClosed$.subscribe(res => {
+      console.log(res);
+    });
+  }
+
+  deleteTask() {
+    const ref = this.modal.open(DeleteTaskComponent , null, 400);
     ref.afterClosed$.subscribe(res => {
       console.log(res);
     });
