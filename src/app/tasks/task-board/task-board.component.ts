@@ -35,6 +35,8 @@ export class TaskBoardComponent implements OnInit {
         columns: this.taskBoards[this.currentActiveBoardIndex].columns
       };
 
+      this.columns = this.currentTaskBoardData.columns;
+
     });
 
   }

@@ -7,6 +7,10 @@
         <button (click)="addColumn(currentActiveBoardIndex)">Add Task Column</button>
       </div>
     </div>
+
+    <div class="taskBoard-columns flex-horizontal-stack flex-fill-space">
+      <app-task-column *ngFor="let column of columns" [columnName]="column.name"></app-task-column>
+    </div>
   </div>
 </ng-container>
 

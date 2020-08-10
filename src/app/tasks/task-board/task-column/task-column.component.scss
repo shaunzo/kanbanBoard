@@ -1,0 +1,21 @@
+:host {
+  display: flex;
+  width: 300px;
+  padding: 20px;
+  border: 1px solid #000;
+  border-radius: 20px;
+  margin-right: 20px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  .task-column-content {
+    width: 100%;
+  }
+
+  .task-column-action {
+    width: 100%;
+    justify-content: center;
+  }
+}

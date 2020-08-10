@@ -58,7 +58,7 @@
     "columns": [
       {
         "id": "4567633",
-        "name": "To do",
+        "name": "To do on sprint 2",
         "tasks": [
           {
             "id": "wer0134",
@@ -76,7 +76,7 @@
         ]
       }, {
         "id": "456765",
-        "name": "In Progress",
+        "name": "In Progress/being done",
         "tasks": [
           {
             "id": "wer04",
@@ -90,7 +90,7 @@
         ]
       }, {
         "id": "456766",
-        "name": "Done",
+        "name": "Work completed",
         "tasks": [
           {
             "id": "wer06",

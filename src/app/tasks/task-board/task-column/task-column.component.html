@@ -1,0 +1,15 @@
+<div class="task-column-content flex-vertical-stack">
+  <div class="task-column-header">
+    <h2>{{ columnName }}</h2>
+  </div>
+
+  <div class="tasks flex-fill-space">
+    Tasks go here
+  </div>
+
+  <div class="task-column-action flex-horizontal-stack">
+    <button (click)="addTask()">Add Task</button>
+    <button (click)="editColumn()">Edit</button>
+    <button (click)="deleteColumn()">Delete</button>
+  </div>
+</div>
