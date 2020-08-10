@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TasksService } from '../tasks/services/tasks.service';
 
 @Component({
   selector: 'app-menu',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  taskBoards = [];
+
+  constructor(private taskService: TasksService) { }
 
   ngOnInit(): void {
+    this.taskService.updatedTaskboard$.subscribe(data => {
+      this.taskBoards = [...this.taskBoards, data];
+    });
   }
 
 }

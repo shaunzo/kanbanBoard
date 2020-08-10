@@ -1,0 +1,9 @@
+<h3 data-test="heading">Boards</h3>
+
+<div data-test="noBoardsMessage" *ngIf="boards.length === 0">
+  <p>No boards to list.</p>
+</div>
+
+<div *ngFor="let board of boards" (click)="setActiveBoard(board.id)" class="board-item" [ngClass]="{active:board.active}" data-test="taskBoard">
+  {{ board.name }}
+</div>

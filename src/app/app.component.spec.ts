@@ -16,7 +16,6 @@ import { TasksService } from './tasks/services/tasks.service';
 describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
-  // let tasksService: jasmine.SpyObj<TasksService>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -33,7 +32,6 @@ describe('AppComponent', () => {
       ],
       providers: [
         { provide: Overlay, useFactory: () => spyOnClass(Overlay)},
-        // { provide: TasksService, useFactory: () => spyOnClass(TasksService)}
       ],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
     }).compileComponents();
@@ -44,9 +42,6 @@ describe('AppComponent', () => {
     component = fixture.componentInstance;
 
     const taskBoards = require('../assets/mock-data/boards.json');
-    // tasksService = TestBed.get(TasksService);
-    // tasksService.getTaskBoard$.and.returnValue(of(taskBoards));
-
 
     fixture.detectChanges();
   });
@@ -91,7 +86,7 @@ describe('AppComponent', () => {
 
     fixture.whenStable().then(() => {
       expect(tasksService.getTaskBoard$).toHaveBeenCalled();
-      expect(spyOnUpdateTaskboards).toHaveBeenCalledWith(data);
+      expect(spyOnUpdateTaskboards).toHaveBeenCalled();
     });
   }));
 

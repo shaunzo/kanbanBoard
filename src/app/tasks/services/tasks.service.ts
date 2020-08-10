@@ -8,9 +8,16 @@ import { of, Subject } from 'rxjs';
 })
 export class TasksService {
 
+  taskBoards = [];
+
   updatedTaskboard$ = new Subject<any>();
+  currentActiveBoardIndex$ = new Subject<number>();
 
   constructor( private httpClient: HttpClient ) {
+    this.updatedTaskboard$.subscribe((data) => {
+      this.taskBoards = [...this.taskBoards, data];
+      console.log(this.taskBoards);
+    });
   }
 
   updateTaskboards(data) {
@@ -27,6 +34,15 @@ export class TasksService {
       name: params.name
     };
     return of(board);
+  }
+
+  setActiveBoard(id: string) {
+    const index = this.taskBoards.filter((item, i) => {
+      if (item.id === id) {
+        this.currentActiveBoardIndex$.next(i);
+        console.log(i);
+      }
+    });
   }
 
 

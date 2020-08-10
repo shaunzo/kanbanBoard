@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
 
   getTaskBoards() {
     this.tasksService.getTaskBoard$().subscribe(res => {
-      this.tasksService.updateTaskboards(res);
+      this.tasksService.updateTaskboards(res[0]);
     });
   }
 }

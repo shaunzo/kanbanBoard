@@ -5,17 +5,16 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 
 import { AppComponent } from './app.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
-import { MenuComponent } from './menu/menu.component';
 import { FooterComponent } from './footer/footer.component';
 import { TasksModule } from './tasks/tasks.module';
 import { ModalModule } from './modal/modal.module';
 import { TasksService } from './tasks/services/tasks.service';
+import { MenuModule } from './menu/menu.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolbarComponent,
-    MenuComponent,
     FooterComponent,
   ],
   imports: [
@@ -23,7 +22,8 @@ import { TasksService } from './tasks/services/tasks.service';
     HttpClientModule,
     AngularSvgIconModule.forRoot(),
     TasksModule,
-    ModalModule
+    ModalModule,
+    MenuModule
   ],
   providers: [
     TasksService
