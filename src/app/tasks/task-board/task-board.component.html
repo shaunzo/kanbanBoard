@@ -9,7 +9,7 @@
     </div>
 
     <div class="taskBoard-columns flex-horizontal-stack flex-fill-space">
-      <app-task-column *ngFor="let column of columns, let c = index" [columnName]="column.name">
+      <app-task-column *ngFor="let column of columns, let c = index" [index]="c" [columnName]="column.name">
 
         <div *ngFor="let task of column.tasks, let t = index" class="task-block flex-vertical-stack">
           <div class="task-block-header">{{task.name}} | <small>{{task.id}}</small></div>

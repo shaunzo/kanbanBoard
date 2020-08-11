@@ -1,1 +1,12 @@
-<p>edit-column works!</p>
+<div>
+  <h3>Please update a your column</h3>
+  <form [formGroup]="editColumnForm" (ngSubmit)="onSubmit()">
+    <fieldset>
+      <input type="text" id="name" name="name" formControlName="name">
+    </fieldset>
+
+    <fieldset>
+      <button  *ngIf="editColumnForm.get('name').valid" type="submit">Update Column</button>
+    </fieldset>
+  </form>
+</div>

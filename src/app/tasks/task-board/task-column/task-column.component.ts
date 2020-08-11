@@ -4,6 +4,8 @@ import { AddTaskComponent } from '../add-task/add-task.component';
 import { EditColumnComponent } from '../edit-column/edit-column.component';
 import { DeleteColumnComponent } from '..//delete-column/delete-column.component';
 import { ITask } from '../interfaces/task';
+import {  TasksService } from '../../services/tasks.service';
+import {TaskColumnService } from './task-column.service';
 
 @Component({
   selector: 'app-task-column',
@@ -12,9 +14,10 @@ import { ITask } from '../interfaces/task';
 })
 export class TaskColumnComponent implements OnInit {
   @Input() columnName: string;
+  @Input() index: string;
   @Input() tasks: ITask[];
 
-  constructor(private modal: ModalService) { }
+  constructor(private modal: ModalService, private tasksService: TasksService, private taskColumnService: TaskColumnService) { }
 
   ngOnInit(): void {
   }
@@ -26,7 +29,8 @@ export class TaskColumnComponent implements OnInit {
     });
   }
 
-  editColumn() {
+  editColumn(index) {
+    this.taskColumnService.columnIndex = index;
     const ref = this.modal.open(EditColumnComponent  , null, 400);
     ref.afterClosed$.subscribe(res => {
       console.log(res);

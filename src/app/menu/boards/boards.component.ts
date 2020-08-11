@@ -31,22 +31,30 @@ export class BoardsComponent implements OnInit, OnChanges {
         }
       });
 
+      if (this.tasksService.currentActiveBoardIndex) {
+        this.boards[this.tasksService.currentActiveBoardIndex].active = true;
+        return;
+      }
+
       if (this.boards && this.boards.length > 0) {
         const checkActiveItem = this.boards.filter((item) => {
             return item.active === true;
         });
 
-        if (checkActiveItem.length === 0) {
+        if (checkActiveItem.length === 0 && !this.tasksService.currentActiveBoardIndex) {
+          console.log('jhjkjh');
           this.boards[0].active = true;
 
           if(this.tasksService.boardId) {
             this.setActiveBoard(this.tasksService.boardId);
           } else {
-            this.setActiveBoard(this.boards[0].id);
+            if (!this.tasksService.currentActiveBoardIndex) {
+              this.setActiveBoard(this.boards[0].id);
+            }
           }
         }
       } else {
-        this.boards[0].active = true;
+       this.boards[0].active = true;
       }
     }
   }

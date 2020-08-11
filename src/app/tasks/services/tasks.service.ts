@@ -10,16 +10,14 @@ import { of, Subject } from 'rxjs';
 export class TasksService {
 
   closeModal$ = new Subject();
-
-  taskBoards = [];
-
   updatedTaskboard$ = new Subject<any>();
   currentActiveBoardIndex$ = new Subject<number>();
   createdNewBoard$ = new Subject<string>(); // Pass board ID
 
-  boardId: string;
   currentActiveBoardIndex: number;
   currentTaskBoardData: ITaskBoard;
+  taskBoards = [];
+  boardId: string;
 
   constructor( private httpClient: HttpClient ) {
     this.updatedTaskboard$.subscribe((data) => {
@@ -32,6 +30,7 @@ export class TasksService {
     });
 
     this.currentActiveBoardIndex$.subscribe(boardIndex => {
+      console.log(boardIndex);
       this.currentActiveBoardIndex = boardIndex;
 
       if (this.taskBoards[this.currentActiveBoardIndex]) {
@@ -83,12 +82,23 @@ export class TasksService {
 
   createColumn(boardIndex: number, columnName: string ) {
     const column: IColumn  = {
-      id: Math.random().toString(36).replace(/[^a-z]+/g, '').substr(2, 10),
+      id: this.generateID(),
       name: columnName,
       tasks: []
     };
 
     this.taskBoards[0][boardIndex].columns.push(column);
+    this.updateTaskboards(this.taskBoards[0]);
+    this.closeModal$.next();
+  }
+
+  updateColumn(boardIndex: number, columnIndex: number, name: string) {
+    this.taskBoards[0][boardIndex].columns[columnIndex].name = name;
+    this.updateTaskboards(this.taskBoards[0]);
+  }
+
+  removeColumn(boardIndex: number, columnIndex: number) {
+    this.taskBoards[0][boardIndex].columns.splice(columnIndex, 1);
     this.updateTaskboards(this.taskBoards[0]);
     this.closeModal$.next();
   }
@@ -103,6 +113,10 @@ export class TasksService {
     }
 
     this.currentActiveBoardIndex$.next(index);
+  }
+
+  generateID() {
+    return Math.random().toString(36).replace(/[^a-z]+/g, '').substr(2, 10);
   }
 
 

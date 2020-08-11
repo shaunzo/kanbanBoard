@@ -32,9 +32,3 @@ import { MenuModule } from './menu/menu.module';
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
-
-
-/**
- * Modal tutorial:
- * https://codinglatte.com/posts/angular/reusable-modal-overlay-using-angular-cdk-overlay/
- */
