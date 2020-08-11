@@ -121,7 +121,7 @@ export class TasksService {
   updateTask(boardIndex: number, columnIndex: number, taskIndex: number, title: string, description: string) {
 
     this.taskBoards[0][boardIndex].columns[columnIndex].tasks[taskIndex].name = title;
-    this.taskBoards[0][boardIndex].columns[columnIndex].tasks[taskIndex].name = description;
+    this.taskBoards[0][boardIndex].columns[columnIndex].tasks[taskIndex].description = description;
     this.updateTaskboards(this.taskBoards[0]);
     this.closeModal$.next();
   }
