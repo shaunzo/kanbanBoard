@@ -2,6 +2,7 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
+  font-family: 'Helvetica', 'sans-serif';
 }
 
 button {
@@ -20,7 +21,7 @@ fieldset {
   padding: 0;
   border: 0;
 
-  input {
+  input,textarea  {
     width: 100%;
     border-radius: 0;
     padding: 10px;

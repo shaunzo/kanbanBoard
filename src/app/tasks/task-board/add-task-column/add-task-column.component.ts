@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { TasksService } from '../../services/tasks.service';
 import { ModalComponent } from '../../../modal/modal.component';
+import { TaskColumnService } from '../task-column/task-column.service';
 
 @Component({
   selector: 'app-add-task-column',
@@ -12,7 +13,7 @@ export class AddTaskColumnComponent implements OnInit {
   addColumnForm: FormGroup;
   registerFormControl: FormGroup;
 
-  constructor(private tasksService: TasksService, private modal: ModalComponent) { }
+  constructor(private tasksService: TasksService, private modal: ModalComponent, private taskColumnService: TaskColumnService) { }
 
   ngOnInit(): void {
     this.addColumnForm = new FormGroup({

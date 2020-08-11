@@ -22,7 +22,8 @@ export class TaskColumnComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addTask() {
+  addTask(index) {
+    this.taskColumnService.columnIndex = index;
     const ref = this.modal.open(AddTaskComponent  , null, 400);
     ref.afterClosed$.subscribe(res => {
       console.log(res);

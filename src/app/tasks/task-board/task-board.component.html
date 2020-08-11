@@ -11,8 +11,9 @@
     <div class="taskBoard-columns flex-horizontal-stack flex-fill-space">
       <app-task-column *ngFor="let column of columns, let c = index" [index]="c" [columnName]="column.name">
 
+        <!-- Task Block -->
         <div *ngFor="let task of column.tasks, let t = index" class="task-block flex-vertical-stack">
-          <div class="task-block-header">{{task.name}} | <small>{{task.id}}</small></div>
+          <div class="task-block-header"><strong>{{task.name}}</strong> | <small><i>{{task.id}}</i></small></div>
           <div class="task-block-content flex-fill-space">{{task.description}}</div>
           <div class="task-block-actions flex-horizontal-stack">
             <button (click)="editTask()">Edit</button>

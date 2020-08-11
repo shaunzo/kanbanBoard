@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ITaskBoard } from '../task-board/interfaces/task-board';
+import { ITask } from '../task-board/interfaces/task';
 import { IColumn } from '../../tasks/task-board/interfaces/column';
 import { of, Subject } from 'rxjs';
 
@@ -100,6 +101,31 @@ export class TasksService {
     this.taskBoards[0][boardIndex].columns.splice(columnIndex, 1);
     this.updateTaskboards(this.taskBoards[0]);
     this.closeModal$.next();
+  }
+
+  createTask(boardIndex: number, columnIndex: number, title: string, description: string) {
+    console.log(boardIndex, columnIndex, title, description);
+
+    const task: ITask = {
+      id: this.generateID(),
+      name: title,
+      description
+    };
+
+    console.log('New:', task);
+
+    this.taskBoards[0][boardIndex].columns[columnIndex].tasks.push(task);
+    this.updateTaskboards(this.taskBoards[0]);
+    this.closeModal$.next();
+
+  }
+
+  updateTask(boardIndex: number, columnIndex: number, taskIndex: number, title: string, description: string) {
+    console.log(boardIndex, columnIndex, taskIndex, title, description);
+  }
+
+  deleteTask(boardIndex: number, columnIndex: number, taskIndex: number) {
+    console.log(boardIndex, columnIndex, taskIndex);
   }
 
   setActiveBoard(id: string) {

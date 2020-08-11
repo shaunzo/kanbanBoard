@@ -8,6 +8,7 @@ export class TaskColumnService {
 
   boardIndex: number;
   columnIndex: number;
+  taskIndex: number;
 
   constructor(private tasksService: TasksService) {
     this.boardIndex = this.tasksService.currentActiveBoardIndex;

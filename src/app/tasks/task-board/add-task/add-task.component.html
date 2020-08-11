@@ -1,1 +1,16 @@
-<p>add-task works!</p>
+<div>
+  <h3>Add your task!</h3>
+  <form [formGroup]="addTaskForm" (ngSubmit)="onSubmit()">
+    <fieldset>
+      <input type="text" id="title" name="title" placeholder="Task Title" formControlName="title">
+    </fieldset>
+
+    <fieldset>
+      <input type="text"  id="description" name="description" placeholder="Task Description" formControlName="description"/>
+    </fieldset>
+
+    <fieldset>
+      <button  *ngIf="addTaskForm.get('title').valid && addTaskForm.get('description').valid" type="submit">Create Task</button>
+    </fieldset>
+  </form>
+</div>
