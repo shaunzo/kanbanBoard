@@ -76,7 +76,7 @@ export class TaskBoardComponent implements OnInit {
   deleteTask(taskId: number, columnIndex: number) {
     this.taskColumnService.taskIndex = taskId;
     this.taskColumnService.columnIndex = columnIndex;
-    const ref = this.modal.open(DeleteTaskComponent , null, 400);
+    const ref = this.modal.open(DeleteTaskComponent , null, 500);
     ref.afterClosed$.subscribe(res => {
       console.log(res);
     });

@@ -127,7 +127,8 @@ export class TasksService {
   }
 
   deleteTask(boardIndex: number, columnIndex: number, taskIndex: number) {
-    console.log(boardIndex, columnIndex, taskIndex);
+    this.taskBoards[0][boardIndex].columns[columnIndex].tasks.splice(taskIndex, 1);
+    this.updateTaskboards(this.taskBoards[0]);
   }
 
   setActiveBoard(id: string) {
