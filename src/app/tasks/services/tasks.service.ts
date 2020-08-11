@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ITaskBoard } from '../task-board/interfaces/task-board';
+import { IColumn } from '../../tasks/task-board/interfaces/column';
 import { of, Subject } from 'rxjs';
 
 @Injectable({
@@ -76,11 +77,18 @@ export class TasksService {
 
   removeTaskBoard(index:number) {
     this.taskBoards[0].splice(index, 1);
+    this.updateTaskboards(this.taskBoards[0]);
+    this.closeModal$.next();
+  }
 
-    if (this.taskBoards[0][0]) {
-      //this.setActiveBoard(this.taskBoards[0][0].id);
-    }
+  createColumn(boardIndex: number, columnName: string ) {
+    const column: IColumn  = {
+      id: Math.random().toString(36).replace(/[^a-z]+/g, '').substr(2, 10),
+      name: columnName,
+      tasks: []
+    };
 
+    this.taskBoards[0][boardIndex].columns.push(column);
     this.updateTaskboards(this.taskBoards[0]);
     this.closeModal$.next();
   }

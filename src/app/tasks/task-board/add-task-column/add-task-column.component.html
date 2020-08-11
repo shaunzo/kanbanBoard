@@ -1,1 +1,12 @@
-<p>add-task-column works!</p>
+<div>
+  <h3>Please enter a name for your column</h3>
+  <form [formGroup]="addColumnForm" (ngSubmit)="onSubmit()">
+    <fieldset>
+      <input type="text" id="name" name="name" formControlName="name">
+    </fieldset>
+
+    <fieldset>
+      <button  *ngIf="addColumnForm.get('name').valid" type="submit">Create Column</button>
+    </fieldset>
+  </form>
+</div>
