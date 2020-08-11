@@ -17,8 +17,8 @@ describe('AddTaskBoardComponent', () => {
     TestBed.configureTestingModule({
       imports: [ HttpClientTestingModule ],
       declarations: [ AddTaskBoardComponent ],
-      providers: [{
-        provide: ModalService, useFactory: () => spyOnClass(ModalService)},
+      providers: [
+        {provide: ModalService, useFactory: () => spyOnClass(ModalService)},
         { provide: ModalComponent, useFactory: () => spyOnClass(ModalComponent) }
       ]
     })

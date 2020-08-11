@@ -46,6 +46,15 @@ export class TasksService {
     this.updatedTaskboard$.next(data);
   }
 
+  updateTaskBoard(name, id) {
+    const index = this.taskBoards[0].findIndex( (item) => {
+      return item.id === id; }
+    );
+    console.log(this.taskBoards, name, id);
+    this.taskBoards[0][index].name = name;
+    this.updateTaskboards(this.taskBoards[0]);
+  }
+
   getTaskBoard$() {
     return this.httpClient.get('assets/mock-data/boards.json');
   }
