@@ -24,7 +24,7 @@ export class ToolbarComponent implements OnInit {
   }
 
   removeTaskBoard() {
-    const ref = this.modal.open(RemoveTaskBoardComponent , null, 400);
+    const ref = this.modal.open(RemoveTaskBoardComponent , null, 450);
     ref.afterClosed$.subscribe(res => {
     });
   }

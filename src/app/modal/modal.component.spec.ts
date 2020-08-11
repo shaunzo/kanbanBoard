@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { spyOnClass } from 'jasmine-es6-spies';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { ModalComponent } from './modal.component';
 import { ModalOverlayRef } from './modalOverlayRef';
@@ -14,6 +15,7 @@ describe('ModalComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ModalComponent ],
+      imports: [ HttpClientTestingModule ],
       providers: [
         { provide: ModalOverlayRef, useFactory: () => spyOnClass(ModalOverlayRef) },
         { provide: ModalService, useFactory: () => spyOnClass(ModalService) }

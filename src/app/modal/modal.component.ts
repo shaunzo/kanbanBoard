@@ -1,5 +1,8 @@
 import { Component, OnInit, TemplateRef, Type, ViewChild, ElementRef, Injector, ReflectiveInjector, Injectable } from '@angular/core';
 import { ModalOverlayRef } from './modalOverlayRef';
+import { RemoveTaskBoardService } from '../tasks/services/remove-task-board.service';
+import { TasksService } from '../tasks/services/tasks.service';
+
 import { Subject } from 'rxjs';
 
 @Component({
@@ -16,7 +19,7 @@ export class ModalComponent implements OnInit {
   context;
   myInjector: Injector;
 
-  constructor(private ref: ModalOverlayRef) {
+  constructor(private ref: ModalOverlayRef, private removeTaskBoard: RemoveTaskBoardService, private tasksService: TasksService) {
   }
 
   ngOnInit(): void {
@@ -35,6 +38,14 @@ export class ModalComponent implements OnInit {
     }
 
     this.submittedForm$.subscribe(() => {
+      this.close();
+    });
+
+    this.tasksService.closeModal$.subscribe(() => {
+      this.close();
+    });
+
+    this.removeTaskBoard.cancelledDelete$.subscribe(() => {
       this.close();
     });
   }

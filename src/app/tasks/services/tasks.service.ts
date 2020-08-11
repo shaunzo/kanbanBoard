@@ -8,6 +8,8 @@ import { of, Subject } from 'rxjs';
 })
 export class TasksService {
 
+  closeModal$ = new Subject();
+
   taskBoards = [];
 
   updatedTaskboard$ = new Subject<any>();
@@ -50,7 +52,6 @@ export class TasksService {
     const index = this.taskBoards[0].findIndex( (item) => {
       return item.id === id; }
     );
-    console.log(this.taskBoards, name, id);
     this.taskBoards[0][index].name = name;
     this.updateTaskboards(this.taskBoards[0]);
   }
@@ -71,6 +72,17 @@ export class TasksService {
     this.boardId = board.id;
 
     this.createdNewBoard$.next(this.boardId);
+  }
+
+  removeTaskBoard(index:number) {
+    this.taskBoards[0].splice(index, 1);
+
+    if (this.taskBoards[0][0]) {
+      //this.setActiveBoard(this.taskBoards[0][0].id);
+    }
+
+    this.updateTaskboards(this.taskBoards[0]);
+    this.closeModal$.next();
   }
 
   setActiveBoard(id: string) {

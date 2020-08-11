@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RemoveTaskBoardComponent } from './remove-task-board.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('RemoveTaskBoardComponent', () => {
   let component: RemoveTaskBoardComponent;
@@ -8,7 +9,8 @@ describe('RemoveTaskBoardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RemoveTaskBoardComponent ]
+      declarations: [ RemoveTaskBoardComponent ],
+      imports: [ HttpClientTestingModule ]
     })
     .compileComponents();
   }));
