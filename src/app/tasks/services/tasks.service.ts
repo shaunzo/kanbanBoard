@@ -13,6 +13,7 @@ export class TasksService {
   updatedTaskboard$ = new Subject<any>();
   currentActiveBoardIndex$ = new Subject<number>();
   createdNewBoard$ = new Subject<string>(); // Pass board ID
+  columnIndex$ = new Subject<number>();
 
   currentActiveBoardIndex: number;
   currentTaskBoardData: ITaskBoard;
@@ -22,7 +23,6 @@ export class TasksService {
   constructor( private httpClient: HttpClient ) {
     this.updatedTaskboard$.subscribe((data) => {
       this.taskBoards = [data];
-      console.log(data);
     });
 
     this.createdNewBoard$.subscribe((boardID) => {
@@ -30,7 +30,6 @@ export class TasksService {
     });
 
     this.currentActiveBoardIndex$.subscribe(boardIndex => {
-      console.log(boardIndex);
       this.currentActiveBoardIndex = boardIndex;
 
       if (this.taskBoards[this.currentActiveBoardIndex]) {

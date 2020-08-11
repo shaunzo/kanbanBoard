@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
 import { RemoveTaskBoardService } from '../services/remove-task-board.service';
 import { TasksService } from '../services/tasks.service';
 

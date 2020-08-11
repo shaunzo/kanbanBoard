@@ -37,8 +37,10 @@ export class TaskColumnComponent implements OnInit {
     });
   }
 
-  deleteColumn() {
-    const ref = this.modal.open(DeleteColumnComponent  , null, 400);
+  deleteColumn(index) {
+    this.taskColumnService.columnIndex = index;
+    console.log('Column index:', index);
+    const ref = this.modal.open(DeleteColumnComponent  , null, 500);
     ref.afterClosed$.subscribe(res => {
       console.log(res);
     });

@@ -31,6 +31,7 @@ export class TaskBoardComponent implements OnInit {
     this.getTaskBoards();
 
     this.tasksService.currentActiveBoardIndex$.subscribe(boardIndex => {
+
       this.currentActiveBoardIndex = boardIndex | 0;
 
       this.currentTaskBoardData = {

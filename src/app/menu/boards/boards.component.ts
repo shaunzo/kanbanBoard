@@ -42,7 +42,6 @@ export class BoardsComponent implements OnInit, OnChanges {
         });
 
         if (checkActiveItem.length === 0 && !this.tasksService.currentActiveBoardIndex) {
-          console.log('jhjkjh');
           this.boards[0].active = true;
 
           if(this.tasksService.boardId) {

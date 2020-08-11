@@ -27,7 +27,6 @@ export class EditColumnComponent implements OnInit {
 
   onSubmit() {
     this.modal.submittedForm$.next();
-    console.log(this.taskColumnservice.boardIndex, this.taskColumnservice.columnIndex);
     this.tasksService.updateColumn(this.taskColumnservice.boardIndex, this.taskColumnservice.columnIndex, this.editColumnForm.value.name);
   }
 

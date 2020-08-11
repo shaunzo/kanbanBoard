@@ -27,7 +27,6 @@ export class EditTaskBoardComponent implements OnInit {
 
 
     this.index = this.tasksService.currentActiveBoardIndex;
-    console.log(this.index);
     this.boards = this.tasksService.taskBoards;
     this.currentBoard = this.boards[0][this.index];
     this.boardTitle = this.currentBoard.name;
