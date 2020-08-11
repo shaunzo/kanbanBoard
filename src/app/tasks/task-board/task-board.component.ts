@@ -8,6 +8,7 @@ import { ITask } from './interfaces/task';
 import { AddTaskColumnComponent } from './add-task-column/add-task-column.component';
 import { DeleteTaskComponent } from './task-column/delete-task/delete-task.component';
 import { EditTaskComponent } from './task-column/edit-task/edit-task.component';
+import { TaskColumnService } from '../task-board/task-column/task-column.service';
 
 @Component({
   selector: 'app-task-board',
@@ -25,7 +26,7 @@ export class TaskBoardComponent implements OnInit {
 
   currentTaskBoardData: ITaskBoard;
 
-  constructor( private modal: ModalService, private tasksService: TasksService) { }
+  constructor( private modal: ModalService, private tasksService: TasksService, private taskColumnService: TaskColumnService) { }
 
   ngOnInit(): void {
     this.getTaskBoards();
@@ -63,14 +64,18 @@ export class TaskBoardComponent implements OnInit {
     });
   }
 
-  editTask() {
+  editTask(taskId: number, columnIndex: number) {
+    this.taskColumnService.taskIndex = taskId;
+    this.taskColumnService.columnIndex = columnIndex;
     const ref = this.modal.open(EditTaskComponent , null, 400);
     ref.afterClosed$.subscribe(res => {
       console.log(res);
     });
   }
 
-  deleteTask() {
+  deleteTask(taskId: number, columnIndex: number) {
+    this.taskColumnService.taskIndex = taskId;
+    this.taskColumnService.columnIndex = columnIndex;
     const ref = this.modal.open(DeleteTaskComponent , null, 400);
     ref.afterClosed$.subscribe(res => {
       console.log(res);

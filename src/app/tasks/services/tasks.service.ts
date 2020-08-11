@@ -112,8 +112,6 @@ export class TasksService {
       description
     };
 
-    console.log('New:', task);
-
     this.taskBoards[0][boardIndex].columns[columnIndex].tasks.push(task);
     this.updateTaskboards(this.taskBoards[0]);
     this.closeModal$.next();
@@ -121,7 +119,11 @@ export class TasksService {
   }
 
   updateTask(boardIndex: number, columnIndex: number, taskIndex: number, title: string, description: string) {
-    console.log(boardIndex, columnIndex, taskIndex, title, description);
+
+    this.taskBoards[0][boardIndex].columns[columnIndex].tasks[taskIndex].name = title;
+    this.taskBoards[0][boardIndex].columns[columnIndex].tasks[taskIndex].name = description;
+    this.updateTaskboards(this.taskBoards[0]);
+    this.closeModal$.next();
   }
 
   deleteTask(boardIndex: number, columnIndex: number, taskIndex: number) {

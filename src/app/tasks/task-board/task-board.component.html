@@ -16,8 +16,8 @@
           <div class="task-block-header"><strong>{{task.name}}</strong> | <small><i>{{task.id}}</i></small></div>
           <div class="task-block-content flex-fill-space">{{task.description}}</div>
           <div class="task-block-actions flex-horizontal-stack">
-            <button (click)="editTask()">Edit</button>
-            <button (click)="deleteTask()">Delete</button>
+            <button (click)="editTask(t,c)">Edit</button>
+            <button (click)="deleteTask(t,c)">Delete</button>
           </div>
         </div>
 

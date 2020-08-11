@@ -1,1 +1,16 @@
-<p>edit-task works!</p>
+<div>
+  <h3>Edit your task</h3>
+  <form [formGroup]="editTaskForm" (ngSubmit)="onSubmit()">
+    <fieldset>
+      <input type="text" id="title" name="title" placeholder="Task Title" formControlName="title">
+    </fieldset>
+
+    <fieldset>
+      <input type="text"  id="description" name="description" placeholder="Task Description" formControlName="description"/>
+    </fieldset>
+
+    <fieldset>
+      <button  *ngIf="editTaskForm.get('title').valid && editTaskForm.get('description').valid" type="submit">Update Task</button>
+    </fieldset>
+  </form>
+</div>
