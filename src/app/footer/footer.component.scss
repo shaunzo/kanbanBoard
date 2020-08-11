@@ -1,5 +1,6 @@
+@import '../../styles//theme//theme';
 :host {
-  background-color: #fff;
-  border-top: 1px solid #000;
+  border-top: 1px solid $primary;
+  background-color: $primaryDark;
   text-align: center;
 }

@@ -1,11 +1,12 @@
 .task-block {
   display: flex;
-  background-color: #fff;
-  border: 1px solid #000;
+  background-color: $secondaryDark;
+  border: 1px solid $primary;
   flex-basis: 100px;
   margin: 10px 0px;
   padding: 20px;
   border-radius: 20px;
+  color: $textColor;
 
   &:first-child {
     margin-top: 0;

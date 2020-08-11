@@ -1,19 +1,19 @@
+@import '../../../styles/theme/theme';
 :host {
-  border: 1px solid #000;
   display: flex;
   padding: 10px 20px;
   flex-direction: column;
 
   .board-item {
     display: block;
-    border: 1px solid #000;
+    background-color: $secondary;
     padding: 10px;
     margin-bottom: 10px;
     cursor: pointer;
 
     &:hover,
     &.active {
-      background-color: #000;
+      background-color: $primary;
       color: #fff;
     }
   }

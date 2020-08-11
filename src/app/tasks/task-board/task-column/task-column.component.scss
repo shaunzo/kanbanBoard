@@ -1,8 +1,11 @@
+@import '../../../../styles//theme/theme';
+
 :host {
   display: flex;
   width: 300px;
   padding: 20px;
-  border: 1px solid #000;
+  border: 1px solid $primary;
+  background-color: $secondary;
   border-radius: 20px;
   margin-right: 20px;
 
@@ -14,7 +17,6 @@
     width: 100%;
 
     .tasks-container {
-      background-color: #fff;
       display: flex;
     }
   }

@@ -1,11 +1,9 @@
+@import '../theme//theme';
+
 button {
   &:hover {
-    background-color: #000;
-    color: #fff
-  }
-
-  &:active {
-    background-color: #ccc;
-    border: none;
+    background-color: $primaryDark;
+    border: 1px solid $primary;
+    color: $textColor;
   }
 }

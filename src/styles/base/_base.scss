@@ -1,8 +1,12 @@
+@import '../theme/themeVariables';
+
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
   font-family: 'Helvetica', 'sans-serif';
+  color: $textColor;
+  background-color: $secondaryDark;
 }
 
 button {
@@ -14,6 +18,8 @@ button {
   outline: none;
   cursor: pointer;
   max-height: 35px;
+  background-color: $primary;
+  color: $textColor;
 }
 
 // Forms
@@ -32,6 +38,10 @@ fieldset {
 
   button {
     margin-left: 0;
-    margin-right: 0;;;
+    margin-right: 0;
   }
+}
+
+h1, h2, h3 {
+  color: $textColor;
 }
