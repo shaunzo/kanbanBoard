@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DeleteColumnComponent } from './delete-column.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('DeleteColumnComponent', () => {
   let component: DeleteColumnComponent;
@@ -8,6 +9,7 @@ describe('DeleteColumnComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ HttpClientTestingModule ],
       declarations: [ DeleteColumnComponent ]
     })
     .compileComponents();

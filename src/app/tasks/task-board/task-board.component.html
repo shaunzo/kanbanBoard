@@ -25,7 +25,7 @@
       <div class="noDataMessage flex-fill-space" *ngIf="columns.length === 0">
         <div class="content flex-vertical-center flex-vertical-stack">
           <h2>You have no task columns.</h2>
-          <button (click)="addColumn()">Create one!</button>
+          <button (click)="addColumn(currentActiveBoardIndex)">Create one!</button>
         </div>
       </div>
     </div>

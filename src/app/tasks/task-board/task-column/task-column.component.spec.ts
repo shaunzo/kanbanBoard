@@ -4,6 +4,7 @@ import { TaskColumnComponent } from './task-column.component';
 import { ModalService } from '../../../modal/services/modal.service';
 import { ModalOverlayRef } from '../../../modal/modalOverlayRef';
 import { spyOnClass } from 'jasmine-es6-spies';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('TaskColumnComponent', () => {
   let component: TaskColumnComponent;
@@ -13,6 +14,7 @@ describe('TaskColumnComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ TaskColumnComponent ],
+      imports: [ HttpClientTestingModule ],
       providers: [
         { provide: ModalService, useFactory: () => spyOnClass(ModalService) },
         { provide: ModalOverlayRef, useFactory: () => spyOnClass(ModalOverlayRef) },
